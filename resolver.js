@@ -3,11 +3,28 @@ const posts = [
     id: "1",
     title: "Apprendre GraphQL",
     content: "Lorem ipsum apprendre GraphQL",
+    authorId: "1",
   },
   {
     id: "2",
     title: "Apprendre Express",
     content: "Lorem ipsum apprendre Express",
+    authorId: "2",
+  },
+];
+
+const authors = [
+  {
+    id: "1",
+    name: "Joe",
+    email: "joe@gmail.com",
+    age: 30,
+  },
+  {
+    id: "2",
+    name: "Jane",
+    email: "jane@gmail.com",
+    age: 25,
   },
 ];
 
@@ -19,6 +36,12 @@ export const resolvers = {
     getPost(parent, args) {
       const id = args.id;
       return posts.find((post) => post.id === id);
+    },
+  },
+
+  Post: {
+    author(parent) {
+      return authors.find((author) => author.id === parent.authorId);
     },
   },
 
